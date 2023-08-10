@@ -29,11 +29,15 @@ namespace PokemonSurvivors.Controllers
                 return NotFound();
             }
 
+            //pokemon.Sprites.Versions.GenerationV.BlackWhite;
+
             PokemonNetworkModel pokemonModel = new PokemonNetworkModel();
             pokemonModel.Name = pokemon.Name;
             pokemonModel.Types = pokemon.Types.ConvertAll<String>(type => type.Type.Name);
             pokemonModel.FrontSpriteUrl = pokemon.Sprites.FrontDefault;
             pokemonModel.BackSpriteUrl = pokemon.Sprites.BackDefault;
+            pokemonModel.FrontSpriteGifUrl = pokemon.Sprites.Versions.GenerationV.BlackWhite.Animated.FrontDefault;
+            pokemonModel.BackSpriteGifUrl = pokemon.Sprites.Versions.GenerationV.BlackWhite.Animated.BackDefault;
 
             pokemonModel.Hp = pokemon.Stats[0].BaseStat;
             pokemonModel.Defense = pokemon.Stats[1].BaseStat;

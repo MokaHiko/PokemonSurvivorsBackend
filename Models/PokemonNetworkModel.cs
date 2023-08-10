@@ -29,6 +29,8 @@ namespace Models
 		public List<string>? Types { get; set; } = new List<string>();
 		public string? FrontSpriteUrl { get; set; }
 		public string? BackSpriteUrl { get; set; }
+		public string? FrontSpriteGifUrl { get; set; }
+		public string? BackSpriteGifUrl { get; set; }
 		public int Hp { get; set; }
 		public int Attack { get; set; }
 		public int Defense { get; set; }
