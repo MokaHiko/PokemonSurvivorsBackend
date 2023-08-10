@@ -31,6 +31,7 @@ namespace PokemonSurvivors.Controllers
 
             PokemonNetworkModel pokemonModel = new PokemonNetworkModel();
             pokemonModel.Name = pokemon.Name;
+            pokemonModel.Types = pokemon.Types.ConvertAll<String>(type => type.Type.Name);
             pokemonModel.FrontSpriteUrl = pokemon.Sprites.FrontDefault;
             pokemonModel.BackSpriteUrl = pokemon.Sprites.BackDefault;
 
@@ -42,7 +43,7 @@ namespace PokemonSurvivors.Controllers
             pokemonModel.Speed = pokemon.Stats[5].BaseStat;
 
             List<Move> allMoves = await PokeClient.GetResourceAsync(pokemon.Moves.Select(move => move.Move));
-            pokemonModel.Moves = allMoves.ToList().ConvertAll<PokemonMoveNetworkModel>(move => new PokemonMoveNetworkModel(move.Name, move.Power, move.Accuracy));
+            pokemonModel.Moves = allMoves.ToList().ConvertAll<PokemonMoveNetworkModel>(move => new PokemonMoveNetworkModel(move.Name, move.Type.Name, move.DamageClass.Name, move.Power, move.Accuracy));
 
             return pokemonModel;
 		}
